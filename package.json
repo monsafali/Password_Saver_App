@@ -1,9 +1,9 @@
 {
-  "name": "Password_saver",
+  "name": "password-saver",
   "version": "1.0.0",
-  "description": "An Electron application with React",
+  "description": "An Electron application with React and vite",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "monsaf-ali",
   "homepage": "https://www.electronjs.org",
   "scripts": {
     "format": "prettier --write .",
@@ -19,9 +19,11 @@
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
+    "idb": "^8.0.1",
     "react-hook-form": "^7.54.2",
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.1.1",
+    "uuid": "^11.0.5",
     "validator": "^13.12.0"
   },
   "devDependencies": {

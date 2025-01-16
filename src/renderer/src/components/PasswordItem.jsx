@@ -1,36 +1,32 @@
-import { FaRegCopy } from "react-icons/fa6";
-import { FaTrash } from "react-icons/fa";
-import { useState } from "react";
+import { FaRegCopy } from 'react-icons/fa6'
+import { FaTrash } from 'react-icons/fa'
+import { useState } from 'react'
 
 function PasswordItem({ password, setPasswords, passwords, index }) {
-  const [copiedField, setCopiedField] = useState(""); // Track which field is copied
-  const [showDialog, setShowDialog] = useState(false); // Manage dialog visibility
+  const [copiedField, setCopiedField] = useState('') // Track which field is copied
+  const [showDialog, setShowDialog] = useState(false) // Manage dialog visibility
 
   const handleDelete = () => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this password?"
-    );
+    const confirmed = window.confirm('Are you sure you want to delete this password?')
     if (confirmed) {
-      setPasswords((prevPasswords) =>
-        prevPasswords.filter((_, i) => i !== index)
-      );
+      setPasswords((prevPasswords) => prevPasswords.filter((_, i) => i !== index))
     }
-  };
+  }
 
   const handleCopy = (text, field) => {
     navigator.clipboard.writeText(text).then(() => {
-      setCopiedField(field);
-      setTimeout(() => setCopiedField(""), 2000); // Reset the copied state after 2 seconds
-    });
-  };
+      setCopiedField(field)
+      setTimeout(() => setCopiedField(''), 2000) // Reset the copied state after 2 seconds
+    })
+  }
 
   const showPasswordDetails = () => {
-    setShowDialog(true);
-  };
+    setShowDialog(true)
+  }
 
   const closeDialog = () => {
-    setShowDialog(false);
-  };
+    setShowDialog(false)
+  }
 
   return (
     <div>
@@ -51,10 +47,8 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
           <div className="flex items-center  space-x-1">
             <span className="text-sm">Username:</span>
             <button
-              onClick={() => handleCopy(password.username, "Username")}
-              className={`btn btn-sm ${
-                copiedField === "Username" ? "text-green-500" : ""
-              }`}
+              onClick={() => handleCopy(password.username, 'Username')}
+              className={`btn btn-sm ${copiedField === 'Username' ? 'text-green-500' : ''}`}
             >
               <FaRegCopy />
             </button>
@@ -64,10 +58,8 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
           <div className="flex items-center space-x-1">
             <span className="text-sm">Password:</span>
             <button
-              onClick={() => handleCopy(password.password, "Password")}
-              className={`btn btn-sm ${
-                copiedField === "Password" ? "text-green-500" : ""
-              }`}
+              onClick={() => handleCopy(password.password, 'Password')}
+              className={`btn btn-sm ${copiedField === 'Password' ? 'text-green-500' : ''}`}
             >
               <FaRegCopy />
             </button>
@@ -84,9 +76,7 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h2 className="text-xl font-bold mb-4">
-              Details for {password.website}
-            </h2>
+            <h2 className="text-xl font-bold mb-4">Details for {password.website}</h2>
             <p>
               <strong>Username:</strong> {password.username}
             </p>
@@ -106,7 +96,7 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default PasswordItem;
+export default PasswordItem
