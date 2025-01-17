@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import PasswordForm from './PasswordForm'
 
-function NewPass({ setPasswords }) {
+function NewPass({ setPasswords, passwords }) {
   const [showForm, setShowForm] = useState(false)
 
   return (
     <div>
-      <button className="bg-red-400 p-4 rounded-full w-full" onClick={() => setShowForm(true)}>
+      <button className="custom-style" onClick={() => setShowForm(true)}>
         Add New Password
       </button>
-      {showForm && <PasswordForm setPasswords={setPasswords} hideForm={() => setShowForm(false)} />}
+      {showForm && (
+        <PasswordForm
+          setPasswords={setPasswords} // Pass down setPasswords function
+          hideForm={() => setShowForm(false)} // Pass down hideForm function
+          passwords={passwords} // Pass down the passwords array
+        />
+      )}
     </div>
   )
 }

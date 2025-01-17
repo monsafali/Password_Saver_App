@@ -30,43 +30,40 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center p-4 border rounded">
+      <div className="password-item">
         {/* Website Name */}
         <div>
-          <p
-            className="font-semibold text-blue-500 cursor-pointer hover:underline"
-            onClick={showPasswordDetails}
-          >
+          <p className="website-name" onClick={showPasswordDetails}>
             {password.website}
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex space-x-4">
+        <div className="actions">
           {/* Copy Username */}
-          <div className="flex items-center  space-x-1">
-            <span className="text-sm">Username:</span>
+          <div className="copy-container">
+            <span className="label">Username:</span>
             <button
               onClick={() => handleCopy(password.username, 'Username')}
-              className={`btn btn-sm ${copiedField === 'Username' ? 'text-green-500' : ''}`}
+              className={`copy-btn ${copiedField === 'Username' ? 'copied' : ''}`}
             >
               <FaRegCopy />
             </button>
           </div>
 
           {/* Copy Password */}
-          <div className="flex items-center space-x-1">
-            <span className="text-sm">Password:</span>
+          <div className="copy-container">
+            <span className="label">Password:</span>
             <button
               onClick={() => handleCopy(password.password, 'Password')}
-              className={`btn btn-sm ${copiedField === 'Password' ? 'text-green-500' : ''}`}
+              className={`copy-btn ${copiedField === 'Password' ? 'copied' : ''}`}
             >
               <FaRegCopy />
             </button>
           </div>
 
           {/* Delete Button */}
-          <button onClick={handleDelete} className="btn btn-sm text-red-600">
+          <button onClick={handleDelete} className="delete-btn">
             <FaTrash />
           </button>
         </div>
@@ -74,9 +71,9 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
 
       {/* Dialog Box */}
       {showDialog && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h2 className="text-xl font-bold mb-4">Details for {password.website}</h2>
+        <div className="dialog-overlay">
+          <div className="dialog-box">
+            <h2 className="dialog-title">Details for {password.website}</h2>
             <p>
               <strong>Username:</strong> {password.username}
             </p>
@@ -86,10 +83,7 @@ function PasswordItem({ password, setPasswords, passwords, index }) {
             <p>
               <strong>Total Passwords Saved:</strong> {passwords.length}
             </p>
-            <button
-              onClick={closeDialog}
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
+            <button onClick={closeDialog} className="close-btn">
               Close
             </button>
           </div>

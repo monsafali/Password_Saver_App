@@ -1,20 +1,17 @@
 appId: com.electron.app
-productName: password-saver
+productName: calculator-react
 directories:
   buildResources: build
 files:
   - '!**/.vscode/*'
   - '!src/*'
-   - 'dist/**'
-  - 'build/**'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
-
 asarUnpack:
   - resources/**
 win:
-  executableName: password-saver
+  executableName: calculator-react
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

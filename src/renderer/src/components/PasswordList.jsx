@@ -1,19 +1,13 @@
 import PasswordItem from './PasswordItem'
-import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 function PasswordList({ passwords, setPasswords }) {
   const [search, setSearch] = useState('')
-  const navigate = useNavigate()
 
   // Filtered passwords based on search query
   const filteredPasswords = passwords.filter((password) =>
     password.website.toLowerCase().includes(search.toLowerCase())
   )
-
-  const showPasswordsInJson = () => {
-    navigate('/json', { state: { passwords } })
-  }
 
   // Save passwords to file whenever the list changes
   useEffect(() => {
@@ -39,27 +33,21 @@ function PasswordList({ passwords, setPasswords }) {
   }, [passwords])
 
   return (
-    <div className="p-4">
+    <div className="password-list-container">
       {/* Search Input and Buttons */}
-      <div className="flex items-center mb-4 space-x-4">
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search your password"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="input input-bordered w-full border border-blue-400 rounded-md p-2"
+          className="search-input"
         />
-        {/* <button
-          onClick={showPasswordsInJson}
-          className="w-48 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
-        >
-          Show Passwords
-        </button> */}
       </div>
 
       {/* Scrollable Password List */}
       <div
-        className="space-y-4 overflow-y-auto"
+        className="password-list"
         style={{
           maxHeight: '500px' // 3 items * estimated height of 84px per item
         }}
@@ -76,7 +64,7 @@ function PasswordList({ passwords, setPasswords }) {
 
         {/* If no results are found */}
         {filteredPasswords.length === 0 && (
-          <p className="text-gray-500 text-center mt-4">No matching passwords found.</p>
+          <p className="no-results">No matching passwords found.</p>
         )}
       </div>
     </div>
